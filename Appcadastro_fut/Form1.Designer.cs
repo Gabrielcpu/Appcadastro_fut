@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.txtCodigo = new System.Windows.Forms.TextBox();
-            this.txtJogador = new System.Windows.Forms.TextBox();
-            this.txtSelecao = new System.Windows.Forms.TextBox();
             this.chkPossui = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,6 +47,8 @@
             this.btnSelecionarFoto = new System.Windows.Forms.Button();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.chkDesejado = new System.Windows.Forms.CheckBox();
+            this.cmbSelecao = new System.Windows.Forms.ComboBox();
+            this.txtJogador = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFigurinhas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             this.SuspendLayout();
@@ -59,20 +59,6 @@
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(100, 22);
             this.txtCodigo.TabIndex = 0;
-            // 
-            // txtJogador
-            // 
-            this.txtJogador.Location = new System.Drawing.Point(44, 152);
-            this.txtJogador.Name = "txtJogador";
-            this.txtJogador.Size = new System.Drawing.Size(100, 22);
-            this.txtJogador.TabIndex = 1;
-            // 
-            // txtSelecao
-            // 
-            this.txtSelecao.Location = new System.Drawing.Point(44, 93);
-            this.txtSelecao.Name = "txtSelecao";
-            this.txtSelecao.Size = new System.Drawing.Size(100, 22);
-            this.txtSelecao.TabIndex = 2;
             // 
             // chkPossui
             // 
@@ -232,6 +218,7 @@
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(121, 24);
             this.cmbTipo.TabIndex = 15;
+            this.cmbTipo.SelectedIndexChanged += new System.EventHandler(this.cmbTipo_SelectedIndexChanged);
             // 
             // chkDesejado
             // 
@@ -243,11 +230,47 @@
             this.chkDesejado.Text = "Desejado";
             this.chkDesejado.UseVisualStyleBackColor = true;
             // 
+            // cmbSelecao
+            // 
+            this.cmbSelecao.FormattingEnabled = true;
+            this.cmbSelecao.Items.AddRange(new object[] {
+            " Alemanha",
+            "Argentina",
+            "Bélgica",
+            "Brasil",
+            "Canadá",
+            "Croácia",
+            "Equador ",
+            "Espanha",
+            "EUA ",
+            "França",
+            "Inglaterra",
+            "Itália",
+            "Japão",
+            "México ",
+            "Holanda",
+            "Portugal",
+            "Uruguai ",
+            "Marrocos"});
+            this.cmbSelecao.Location = new System.Drawing.Point(44, 93);
+            this.cmbSelecao.Name = "cmbSelecao";
+            this.cmbSelecao.Size = new System.Drawing.Size(100, 24);
+            this.cmbSelecao.TabIndex = 17;
+            // 
+            // txtJogador
+            // 
+            this.txtJogador.Location = new System.Drawing.Point(44, 156);
+            this.txtJogador.Name = "txtJogador";
+            this.txtJogador.Size = new System.Drawing.Size(100, 22);
+            this.txtJogador.TabIndex = 19;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1127, 450);
+            this.Controls.Add(this.txtJogador);
+            this.Controls.Add(this.cmbSelecao);
             this.Controls.Add(this.chkDesejado);
             this.Controls.Add(this.cmbTipo);
             this.Controls.Add(this.btnSelecionarFoto);
@@ -262,8 +285,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.chkPossui);
-            this.Controls.Add(this.txtSelecao);
-            this.Controls.Add(this.txtJogador);
             this.Controls.Add(this.txtCodigo);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -277,8 +298,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtCodigo;
-        private System.Windows.Forms.TextBox txtJogador;
-        private System.Windows.Forms.TextBox txtSelecao;
         private System.Windows.Forms.CheckBox chkPossui;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -297,6 +316,8 @@
         private System.Windows.Forms.Button btnSelecionarFoto;
         private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.CheckBox chkDesejado;
+        private System.Windows.Forms.ComboBox cmbSelecao;
+        private System.Windows.Forms.TextBox txtJogador;
     }
 }
 
