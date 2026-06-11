@@ -57,10 +57,12 @@ namespace Appcadastro_fut
                     continue;
 
                 dgvFigurinhas.Rows.Add(
-                    dados[0],
-                    dados[1],
-                    dados[2],
-                    dados[3]
+                    dados[0], // código
+                    dados[1], // seleção
+                    dados[2], // jogador
+                    dados[3], // tipo
+                    dados[4], // obtido
+                    dados[5]  // desejado
                 );
             }
         }
@@ -94,11 +96,9 @@ namespace Appcadastro_fut
 
             txtCodigo.Text =
                 dgvFigurinhas.Rows[e.RowIndex].Cells[0].Value.ToString();
+
             if (e.RowIndex < 0)
                 return;
-
-            txtCodigo.Text =
-                dgvFigurinhas.Rows[e.RowIndex].Cells[0].Value.ToString();
 
             string[] linhas = File.ReadAllLines(arquivo);
 
@@ -133,13 +133,16 @@ namespace Appcadastro_fut
 
         private void btnCadastrar_Click_1(object sender, EventArgs e)
         {
+            if (!NomeJogadorValido())
+                return;
+
+            if (FigurinhaJaPossuida())
+                return;
+
             if (!CamposValidos())
                 return;
 
             if (!JogadorValido())
-                return;
-
-            if (!CamposValidos())
                 return;
 
             // Verifica se o código já existe (evita duplicidade)
@@ -173,6 +176,10 @@ namespace Appcadastro_fut
 
             if (!CamposValidos())
                 return;
+
+            if (!NomeJogadorValido())
+                return;
+
 
             if (!File.Exists(arquivo))
             {
@@ -266,10 +273,18 @@ namespace Appcadastro_fut
                 string nomeArquivo = Path.GetFileName(abrir.FileName);
                 string destino = Path.Combine(pastaFotos, nomeArquivo);
 
-                File.Copy(abrir.FileName, destino, true);
+                try
+                {
+                    File.Copy(abrir.FileName, destino, true);
 
-                caminhoImagem = destino;
-                picFoto.ImageLocation = caminhoImagem;
+                    caminhoImagem = destino;
+                    picFoto.ImageLocation = caminhoImagem;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        "Erro ao copiar imagem: " + ex.Message);
+                }
             }
         }
 
@@ -279,6 +294,13 @@ namespace Appcadastro_fut
         // Verifica se todos os campos obrigatórios foram preenchidos
         private bool CamposValidos()
         {
+            if (!chkPossui.Checked && !chkDesejado.Checked)
+            {
+                MessageBox.Show(
+                    "Selecione Obtido ou Desejado.");
+                return false;
+            }
+
             if (
                 txtCodigo.Text.Trim() == "" ||
                 cmbSelecao.Text.Trim() == "" ||
@@ -288,6 +310,11 @@ namespace Appcadastro_fut
             )
             {
                 MessageBox.Show("Preencha todos os campos obrigatórios.");
+                return false;
+            }
+            if (txtCodigo.Text.Trim().Length < 3)
+            {
+                MessageBox.Show("O código deve possuir pelo menos 3 caracteres.");
                 return false;
             }
 
@@ -348,5 +375,75 @@ namespace Appcadastro_fut
 
             return true;
         }
+
+        private void chkPossui_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkPossui.Checked)
+                chkDesejado.Checked = false;
+        }
+
+        private void chkDesejado_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkDesejado.Checked)
+                chkPossui.Checked = false;
+        }
+        // Impede cadastrar uma figurinha repetida que o usuário já possui
+        private bool FigurinhaJaPossuida()
+        {
+            if (!File.Exists(arquivo))
+                return false;
+
+            string jogador = txtJogador.Text.Trim();
+            string selecao = cmbSelecao.Text.Trim();
+            string codigoAtual = txtCodigo.Text.Trim();
+
+            var linhas = File.ReadAllLines(arquivo);
+
+            foreach (var linha in linhas)
+            {
+                string[] dados = linha.Split(';');
+
+                if (dados.Length < 7)
+                    continue;
+
+                // Ignora a própria figurinha (caso seja Alterar)
+                if (dados[0] == codigoAtual)
+                    continue;
+
+                bool mesmoJogador = dados[2].Equals(jogador, StringComparison.OrdinalIgnoreCase);
+                bool mesmaSelecao = dados[1].Equals(selecao, StringComparison.OrdinalIgnoreCase);
+                bool jaPossui = Convert.ToBoolean(dados[4]);
+
+                if (mesmoJogador && mesmaSelecao && jaPossui)
+                {
+                    MessageBox.Show(
+                        $"Você já possui a figurinha de \"{jogador}\" ({selecao}). " +
+                        "Não é possível cadastrar novamente.");
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        private bool NomeJogadorValido()
+        {
+            string jogador = txtJogador.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(jogador))
+                return false;
+
+            foreach (char c in jogador)
+            {
+                if (!char.IsLetter(c) && c != ' ')
+                {
+                    MessageBox.Show(
+                        "O nome deve conter apenas letras.");
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
+    
 }

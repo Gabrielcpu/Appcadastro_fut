@@ -69,6 +69,7 @@
             this.chkPossui.TabIndex = 3;
             this.chkPossui.Text = "Possuo a figurinha";
             this.chkPossui.UseVisualStyleBackColor = true;
+            this.chkPossui.CheckedChanged += new System.EventHandler(this.chkPossui_CheckedChanged);
             // 
             // label1
             // 
@@ -154,11 +155,11 @@
             this.colSelecao,
             this.colJogador,
             this.colPossui});
-            this.dgvFigurinhas.Location = new System.Drawing.Point(486, 15);
+            this.dgvFigurinhas.Location = new System.Drawing.Point(447, 15);
             this.dgvFigurinhas.Name = "dgvFigurinhas";
             this.dgvFigurinhas.RowHeadersWidth = 51;
             this.dgvFigurinhas.RowTemplate.Height = 24;
-            this.dgvFigurinhas.Size = new System.Drawing.Size(578, 159);
+            this.dgvFigurinhas.Size = new System.Drawing.Size(648, 159);
             this.dgvFigurinhas.TabIndex = 12;
             this.dgvFigurinhas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFigurinhas_CellClick);
             // 
@@ -192,15 +193,16 @@
             // 
             // picFoto
             // 
-            this.picFoto.Location = new System.Drawing.Point(486, 206);
+            this.picFoto.Location = new System.Drawing.Point(447, 206);
             this.picFoto.Name = "picFoto";
-            this.picFoto.Size = new System.Drawing.Size(578, 212);
+            this.picFoto.Size = new System.Drawing.Size(648, 212);
+            this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFoto.TabIndex = 13;
             this.picFoto.TabStop = false;
             // 
             // btnSelecionarFoto
             // 
-            this.btnSelecionarFoto.Location = new System.Drawing.Point(303, 351);
+            this.btnSelecionarFoto.Location = new System.Drawing.Point(292, 245);
             this.btnSelecionarFoto.Name = "btnSelecionarFoto";
             this.btnSelecionarFoto.Size = new System.Drawing.Size(143, 35);
             this.btnSelecionarFoto.TabIndex = 14;
@@ -229,6 +231,7 @@
             this.chkDesejado.TabIndex = 16;
             this.chkDesejado.Text = "Desejado";
             this.chkDesejado.UseVisualStyleBackColor = true;
+            this.chkDesejado.CheckedChanged += new System.EventHandler(this.chkDesejado_CheckedChanged);
             // 
             // cmbSelecao
             // 
