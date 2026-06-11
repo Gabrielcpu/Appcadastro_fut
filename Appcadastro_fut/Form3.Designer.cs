@@ -37,9 +37,11 @@
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.dgvLista = new System.Windows.Forms.DataGridView();
             this.colCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colObtido = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colDesejado = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colVisualizar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colSelecao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colJogador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPossui = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,14 +114,16 @@
             this.dgvLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colCodigo,
+            this.colObtido,
+            this.colDesejado,
+            this.colVisualizar,
             this.colSelecao,
-            this.colJogador,
-            this.colPossui});
-            this.dgvLista.Location = new System.Drawing.Point(28, 103);
+            this.colJogador});
+            this.dgvLista.Location = new System.Drawing.Point(12, 100);
             this.dgvLista.Name = "dgvLista";
             this.dgvLista.RowHeadersWidth = 51;
             this.dgvLista.RowTemplate.Height = 24;
-            this.dgvLista.Size = new System.Drawing.Size(746, 324);
+            this.dgvLista.Size = new System.Drawing.Size(725, 306);
             this.dgvLista.TabIndex = 13;
             // 
             // colCodigo
@@ -129,32 +133,46 @@
             this.colCodigo.Name = "colCodigo";
             this.colCodigo.Width = 125;
             // 
+            // colObtido
+            // 
+            this.colObtido.HeaderText = "Obtido";
+            this.colObtido.MinimumWidth = 6;
+            this.colObtido.Name = "colObtido";
+            this.colObtido.Width = 125;
+            // 
+            // colDesejado
+            // 
+            this.colDesejado.HeaderText = " Desejado";
+            this.colDesejado.MinimumWidth = 6;
+            this.colDesejado.Name = "colDesejado";
+            this.colDesejado.Width = 125;
+            // 
+            // colVisualizar
+            // 
+            this.colVisualizar.HeaderText = "Estilo da carta";
+            this.colVisualizar.MinimumWidth = 6;
+            this.colVisualizar.Name = "colVisualizar";
+            this.colVisualizar.Width = 125;
+            // 
             // colSelecao
             // 
-            this.colSelecao.HeaderText = "Seleção";
+            this.colSelecao.HeaderText = "figurinha obtida recentimente";
             this.colSelecao.MinimumWidth = 6;
             this.colSelecao.Name = "colSelecao";
             this.colSelecao.Width = 125;
             // 
             // colJogador
             // 
-            this.colJogador.HeaderText = "Jogador";
+            this.colJogador.HeaderText = "figurinha desejada";
             this.colJogador.MinimumWidth = 6;
             this.colJogador.Name = "colJogador";
             this.colJogador.Width = 125;
-            // 
-            // colPossui
-            // 
-            this.colPossui.HeaderText = "Possui";
-            this.colPossui.MinimumWidth = 6;
-            this.colPossui.Name = "colPossui";
-            this.colPossui.Width = 125;
             // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(792, 450);
             this.Controls.Add(this.dgvLista);
             this.Controls.Add(this.btnFiltrar);
             this.Controls.Add(this.label3);
@@ -165,6 +183,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form3";
             this.Text = "Form3";
+            this.Load += new System.EventHandler(this.Form3_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -182,8 +201,10 @@
         private System.Windows.Forms.Button btnFiltrar;
         private System.Windows.Forms.DataGridView dgvLista;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCodigo;
+        private System.Windows.Forms.DataGridViewButtonColumn colObtido;
+        private System.Windows.Forms.DataGridViewButtonColumn colDesejado;
+        private System.Windows.Forms.DataGridViewButtonColumn colVisualizar;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSelecao;
         private System.Windows.Forms.DataGridViewTextBoxColumn colJogador;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPossui;
     }
 }
